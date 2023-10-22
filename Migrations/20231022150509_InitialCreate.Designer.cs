@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Boamba_Emilia_Lab2.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20231020121601_InitialCreate")]
+    [Migration("20231022150509_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -25,6 +25,27 @@ namespace Boamba_Emilia_Lab2.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Boamba_Emilia_Lab2.Models.Author", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Author", (string)null);
+                });
+
             modelBuilder.Entity("Boamba_Emilia_Lab2.Models.Book", b =>
                 {
                     b.Property<int>("ID")
@@ -33,9 +54,8 @@ namespace Boamba_Emilia_Lab2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AuthorID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -45,6 +65,8 @@ namespace Boamba_Emilia_Lab2.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("AuthorID");
 
                     b.ToTable("Book", (string)null);
                 });
@@ -96,6 +118,17 @@ namespace Boamba_Emilia_Lab2.Migrations
                     b.ToTable("Order", (string)null);
                 });
 
+            modelBuilder.Entity("Boamba_Emilia_Lab2.Models.Book", b =>
+                {
+                    b.HasOne("Boamba_Emilia_Lab2.Models.Author", "Author")
+                        .WithMany("Books")
+                        .HasForeignKey("AuthorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+                });
+
             modelBuilder.Entity("Boamba_Emilia_Lab2.Models.Order", b =>
                 {
                     b.HasOne("Boamba_Emilia_Lab2.Models.Book", "Book")
@@ -113,6 +146,11 @@ namespace Boamba_Emilia_Lab2.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("Boamba_Emilia_Lab2.Models.Author", b =>
+                {
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Boamba_Emilia_Lab2.Models.Book", b =>

@@ -22,9 +22,8 @@ namespace Boamba_Emilia_Lab2.Controllers
         // GET: Books
         public async Task<IActionResult> Index()
         {
-              return _context.Books != null ? 
-                          View(await _context.Books.ToListAsync()) :
-                          Problem("Entity set 'LibraryContext.Books'  is null.");
+            var libraryContext = _context.Books.Include(b => b.Author);
+            return View(await libraryContext.ToListAsync());
         }
 
         // GET: Books/Details/5
@@ -36,6 +35,7 @@ namespace Boamba_Emilia_Lab2.Controllers
             }
 
             var book = await _context.Books
+                .Include(b => b.Author)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (book == null)
             {
@@ -48,6 +48,7 @@ namespace Boamba_Emilia_Lab2.Controllers
         // GET: Books/Create
         public IActionResult Create()
         {
+            ViewData["AuthorID"] = new SelectList(_context.Authors, "ID", "ID");
             return View();
         }
 
@@ -56,15 +57,17 @@ namespace Boamba_Emilia_Lab2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,Author,Price")] Book book)
+        public async Task<IActionResult> Create([Bind("ID,Title,AuthorID,Price")] Book book)
         {
-            if (ModelState.IsValid)
-            {
+
+            //if (ModelState.IsValid)
+            //{
                 _context.Add(book);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(book);
+            //}
+            //ViewData["AuthorID"] = new SelectList(_context.Authors, "ID", "ID", book.AuthorID);
+            //return View(book);
         }
 
         // GET: Books/Edit/5
@@ -80,6 +83,7 @@ namespace Boamba_Emilia_Lab2.Controllers
             {
                 return NotFound();
             }
+            ViewData["AuthorID"] = new SelectList(_context.Authors, "ID", "ID", book.AuthorID);
             return View(book);
         }
 
@@ -88,15 +92,15 @@ namespace Boamba_Emilia_Lab2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,Author,Price")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,AuthorID,Price")] Book book)
         {
             if (id != book.ID)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 try
                 {
                     _context.Update(book);
@@ -114,8 +118,9 @@ namespace Boamba_Emilia_Lab2.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            return View(book);
+            //}
+            //ViewData["AuthorID"] = new SelectList(_context.Authors, "ID", "ID", book.AuthorID);
+            //return View(book);
         }
 
         // GET: Books/Delete/5
@@ -127,6 +132,7 @@ namespace Boamba_Emilia_Lab2.Controllers
             }
 
             var book = await _context.Books
+                .Include(b => b.Author)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (book == null)
             {

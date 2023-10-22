@@ -13,24 +13,47 @@ namespace Boamba_Emilia_Lab2.Data
                 {
                     return; // BD a fost creata anterior
                 }
+
+                Author Author1 = new Author
+                {
+                    FirstName = "Mihail",
+                    LastName = "Sadoveanu"
+                };
+
+                Author Author2 = new Author
+                {
+                    FirstName = "George",
+                    LastName = "Calinescu"
+                };
+
+                Author Author3 = new Author
+                {
+                    FirstName = "Mircea",
+                    LastName = "Eliade"
+                };
+
+
+                context.Authors.AddRange(Author1, Author2, Author3);
+
                 context.Books.AddRange(
                 new Book
                 {
                     Title = "Baltagul",
-                    Author = "Mihail Sadoveanu",
-                    Price=Decimal.Parse("22")},
+                    Author = Author1,
+                    Price=Decimal.Parse("22")
+                },
                
                 new Book
                 {
                     Title = "Enigma Otiliei",
-                    Author = "George Calinescu",
-                    Price=Decimal.Parse("18")},
+                    Author = Author2,
+                    Price =Decimal.Parse("18")},
                
                 new Book
                 {
                     Title = "Maytrei",
-                    Author = "Mircea Eliade",
-                    Price=Decimal.Parse("27")}
+                    Author = Author3,
+                    Price =Decimal.Parse("27")}
               
                 );
 
