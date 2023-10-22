@@ -48,7 +48,7 @@ namespace Boamba_Emilia_Lab2.Controllers
         // GET: Books/Create
         public IActionResult Create()
         {
-            ViewData["AuthorID"] = new SelectList(_context.Authors, "ID", "ID");
+            ViewData["AuthorID"] = new SelectList(_context.Authors, "ID", "FullName");
             return View();
         }
 
@@ -60,14 +60,14 @@ namespace Boamba_Emilia_Lab2.Controllers
         public async Task<IActionResult> Create([Bind("ID,Title,AuthorID,Price")] Book book)
         {
 
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 _context.Add(book);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            //}
-            //ViewData["AuthorID"] = new SelectList(_context.Authors, "ID", "ID", book.AuthorID);
-            //return View(book);
+            }
+            ViewData["AuthorID"] = new SelectList(_context.Authors, "ID", "FullName", book.AuthorID);
+            return View(book);
         }
 
         // GET: Books/Edit/5
@@ -83,7 +83,7 @@ namespace Boamba_Emilia_Lab2.Controllers
             {
                 return NotFound();
             }
-            ViewData["AuthorID"] = new SelectList(_context.Authors, "ID", "ID", book.AuthorID);
+            ViewData["AuthorID"] = new SelectList(_context.Authors, "ID", "FullName", book.AuthorID);
             return View(book);
         }
 
@@ -99,8 +99,8 @@ namespace Boamba_Emilia_Lab2.Controllers
                 return NotFound();
             }
 
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 try
                 {
                     _context.Update(book);
@@ -118,9 +118,9 @@ namespace Boamba_Emilia_Lab2.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            //}
-            //ViewData["AuthorID"] = new SelectList(_context.Authors, "ID", "ID", book.AuthorID);
-            //return View(book);
+            }
+            ViewData["AuthorID"] = new SelectList(_context.Authors, "ID", "ID", book.AuthorID);
+            return View(book);
         }
 
         // GET: Books/Delete/5

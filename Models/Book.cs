@@ -7,8 +7,8 @@
         public decimal Price { get; set; }
         public int AuthorID { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
-        public Author Author { get; set; }
+        public ICollection<Order>? Orders { get; set; }
+        public Author? Author { get; set; }
 
     }
 
