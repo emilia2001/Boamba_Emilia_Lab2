@@ -26,25 +26,22 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <table>
-                        <tr>
+                        <th colspan="2">
+                            Published books
+                        </th>
                          @{
-                                int cnt = 0;
-                                List<Boamba_Emilia_Lab2.Models.LibraryViewModels.PublishedBookData> books = ViewBag.Books;
-                                foreach (var book in books)
-                                {
-                                    if (cnt++ % 3 == 0)
-                                    {
-                                    @:</tr><tr>
-                                    }
-                                    @:<td>
-                                        <input type="checkbox"
-                                            name="selectedBooks"
-                                            value="@book.BookID"
-                                            @(Html.Raw(book.IsPublished ? "checked=\"checked\"" : "")) />
-                                        @book.BookID @: @book.Title
-                                    @:</td>
-                                }
-                        @:</tr>
+                            int cnt = 0;
+                            List<Boamba_Emilia_Lab2.Models.LibraryViewModels.PublishedBookData> books = ViewBag.Books;
+                            foreach (var book in books)
+                            {
+                                @:<tr><td>
+                                    <input type="checkbox"
+                                        name="selectedBooks"
+                                        value="@book.BookID"
+                                        @(Html.Raw(book.IsPublished ? "checked=\"checked\"" : "")) />
+                                    @book.BookID @: @book.Title
+                                @:</td></tr>
+                            }
                         }
                     </table>
                 </div>
