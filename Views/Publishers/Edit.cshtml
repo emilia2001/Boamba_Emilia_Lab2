@@ -24,6 +24,32 @@
                 <span asp-validation-for="Adress" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <table>
+                        <tr>
+                         @{
+                                int cnt = 0;
+                                List<Boamba_Emilia_Lab2.Models.LibraryViewModels.PublishedBookData> books = ViewBag.Books;
+                                foreach (var book in books)
+                                {
+                                    if (cnt++ % 3 == 0)
+                                    {
+                                    @:</tr><tr>
+                                    }
+                                    @:<td>
+                                        <input type="checkbox"
+                                            name="selectedBooks"
+                                            value="@book.BookID"
+                                            @(Html.Raw(book.IsPublished ? "checked=\"checked\"" : "")) />
+                                        @book.BookID @: @book.Title
+                                    @:</td>
+                                }
+                        @:</tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
