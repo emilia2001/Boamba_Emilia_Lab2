@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boamba_Emilia_Lab2", "Boamba_Emilia_Lab2.csproj", "{9C096B11-6A38-4B7E-92C5-97EF69BE8BAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Boamba_Emilia_Lab2", "Boamba_Emilia_Lab2.csproj", "{9C096B11-6A38-4B7E-92C5-97EF69BE8BAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryModel", "LibraryModel\LibraryModel.csproj", "{413C8A32-F8EB-464F-895D-3F464A2F0499}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryWebAPI", "LibraryWebAPI\LibraryWebAPI.csproj", "{454A66B2-2ECE-48FD-952C-A641388711B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{9C096B11-6A38-4B7E-92C5-97EF69BE8BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C096B11-6A38-4B7E-92C5-97EF69BE8BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C096B11-6A38-4B7E-92C5-97EF69BE8BAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{413C8A32-F8EB-464F-895D-3F464A2F0499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{413C8A32-F8EB-464F-895D-3F464A2F0499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{413C8A32-F8EB-464F-895D-3F464A2F0499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{413C8A32-F8EB-464F-895D-3F464A2F0499}.Release|Any CPU.Build.0 = Release|Any CPU
+		{454A66B2-2ECE-48FD-952C-A641388711B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{454A66B2-2ECE-48FD-952C-A641388711B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{454A66B2-2ECE-48FD-952C-A641388711B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{454A66B2-2ECE-48FD-952C-A641388711B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
