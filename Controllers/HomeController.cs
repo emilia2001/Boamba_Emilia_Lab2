@@ -33,6 +33,10 @@ namespace Boamba_Emilia_Lab2.Controllers
             return View(await data.AsNoTracking().ToListAsync());
         }
 
+        public IActionResult Chat()
+        {
+            return View();
+        }
 
         public IActionResult Index()
         {
