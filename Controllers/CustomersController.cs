@@ -11,9 +11,11 @@ using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
 using LibraryModel.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Boamba_Emilia_Lab2.Controllers
 {
+    [Authorize(Policy = "SalesManager")]
     public class CustomersController : Controller
     {
         private readonly LibraryContext _context;
