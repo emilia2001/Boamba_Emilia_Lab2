@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Boamba_Emilia_Lab2.Data;
 using Boamba_Emilia_Lab2.Models;
 using Boamba_Emilia_Lab2.Models.LibraryViewModels;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace Boamba_Emilia_Lab2.Controllers
 {
+    [Authorize(Policy = "OnlySales")]
+
     public class PublishersController : Controller
     {
         private readonly LibraryContext _context;
